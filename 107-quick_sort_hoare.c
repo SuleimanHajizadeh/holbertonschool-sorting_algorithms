@@ -1,79 +1,45 @@
 #include "sort.h"
+#include <stdio.h>
 
-/**
- * swap_ints - Swap two integers in an array.
- * @a: The first integer
- * @b: The second integer
- */
 void swap_ints(int *a, int *b)
 {
-	int tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
 }
 
-/**
- * hoare_partition - Partition an array using Hoare scheme.
- * @array: The array to partition
- * @size: Size of the array
- * @left: Starting index
- * @right: Ending index
- *
- * Return: Partition index
- */
-int hoare_partition(int *array, size_t size, int left, int right)
+/* Hoare partition: returns the index for partitioning */
+int hoare_partition(int *array, int left, int right, size_t size)
 {
-	int pivot = array[right];
-	int above = left - 1, below = right + 1;
+    int pivot = array[left];  // pivot is left-most element
+    int i = left - 1, j = right + 1;
 
-	while (1)
-	{
-		do {
-			above++;
-		} while (array[above] < pivot);
+    while (1)
+    {
+        do { i++; } while (array[i] < pivot);
+        do { j--; } while (array[j] > pivot);
 
-		do {
-			below--;
-		} while (array[below] > pivot);
+        if (i >= j)
+            return j;
 
-		if (above >= below)
-			return (below);
-
-		swap_ints(&array[above], &array[below]);
-		print_array(array, size);
-	}
+        swap_ints(&array[i], &array[j]);
+        print_array(array, size);
+    }
 }
 
-/**
- * hoare_sort - Recursively sort an array using Hoare partition.
- * @array: The array to sort
- * @size: Size of the array
- * @left: Starting index
- * @right: Ending index
- */
-void hoare_sort(int *array, size_t size, int left, int right)
+void hoare_sort(int *array, int left, int right, size_t size)
 {
-	int part;
-
-	if (left < right)
-	{
-		part = hoare_partition(array, size, left, right);
-		hoare_sort(array, size, left, part);
-		hoare_sort(array, size, part + 1, right);
-	}
+    if (left < right)
+    {
+        int p = hoare_partition(array, left, right, size);
+        hoare_sort(array, left, p, size);
+        hoare_sort(array, p + 1, right, size);
+    }
 }
 
-/**
- * quick_sort_hoare - Sort an array in ascending order using Hoare scheme.
- * @array: The array to sort
- * @size: Size of the array
- */
 void quick_sort_hoare(int *array, size_t size)
 {
-	if (!array || size < 2)
-		return;
-
-	hoare_sort(array, size, 0, (int)size - 1);
+    if (!array || size < 2)
+        return;
+    hoare_sort(array, 0, size - 1, size);
 }
