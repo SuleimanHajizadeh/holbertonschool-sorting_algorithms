@@ -14,9 +14,9 @@
  */
 typedef struct listint_s
 {
-	const int n;
-	struct listint_s *prev;
-	struct listint_s *next;
+        const int n;
+        struct listint_s *prev;
+        struct listint_s *next;
 } listint_t;
 
 /* Prototypes */
@@ -34,6 +34,5 @@ void heap_sort(int *array, size_t size);
 void radix_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
-void sort_deck(deck_node_t **deck);
 
 #endif /* SORT_H */

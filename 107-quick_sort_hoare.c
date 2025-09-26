@@ -15,13 +15,13 @@ void swap_ints(int *a, int *b)
 }
 
 /**
- * hoare_partition - Partition an array using Hoare scheme
+ * hoare_partition - Partition an array using Hoare scheme.
  * @array: The array to partition
- * @size: The size of the array
- * @left: The starting index
- * @right: The ending index
+ * @size: Size of the array
+ * @left: Starting index
+ * @right: Ending index
  *
- * Return: The partition index
+ * Return: Partition index
  */
 int hoare_partition(int *array, size_t size, int left, int right)
 {
@@ -47,11 +47,11 @@ int hoare_partition(int *array, size_t size, int left, int right)
 }
 
 /**
- * hoare_sort - Recursively sort an array using Hoare partition
+ * hoare_sort - Recursively sort an array using Hoare partition.
  * @array: The array to sort
- * @size: The size of the array
- * @left: The starting index
- * @right: The ending index
+ * @size: Size of the array
+ * @left: Starting index
+ * @right: Ending index
  */
 void hoare_sort(int *array, size_t size, int left, int right)
 {
@@ -66,10 +66,9 @@ void hoare_sort(int *array, size_t size, int left, int right)
 }
 
 /**
- * quick_sort_hoare - Sort an array of integers in ascending order
- *                    using the quicksort algorithm with Hoare partition
+ * quick_sort_hoare - Sort an array in ascending order using Hoare scheme.
  * @array: The array to sort
- * @size: The size of the array
+ * @size: Size of the array
  */
 void quick_sort_hoare(int *array, size_t size)
 {
